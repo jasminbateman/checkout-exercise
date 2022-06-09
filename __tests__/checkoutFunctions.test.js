@@ -4,26 +4,26 @@
 4 - As a user, I would like to be able to remove an item from my basket.
  */
 const { orange, kiwi, pineapple, apple, banana, catalogue} = require('../data/data');
-const { scan, basket, addItem, totalPrice, removeItem } = require('../checkout');
+const { scanItem, basket, addToBasket, totalPrice, removeItem } = require('../checkoutFunctions');
 const { expect, it } = require('@jest/globals');
 
 
 
-describe("selfCheckout", () => {
+describe("selfCheckout Functions test", () => {
     it('returns the details of an item from the barcode', () => {
-        expect(scan(orange.barcode)).toBe(orange);
+        expect(scanItem(orange.barcode)).toBe(orange);
     });
 
     it('adds an item to the basket', () => {
         expect(basket.length).toBe(0);
 
-        addItem(kiwi, basket)
+        addToBasket(kiwi, basket)
 
         expect(basket.length).toBe(1)
     })
 
     it('shows the total price', () => {
-        addItem(pineapple, basket)
+        addToBasket(pineapple, basket)
         expect(totalPrice(basket)).toBe(105)    
     })
 
